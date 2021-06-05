@@ -27,7 +27,7 @@ buildNumber.properties
 ##############################
 ## Gradle
 ##############################
-../Trabajos Universidad/Inter ARSW/ARWS/ARSW-Lab2/bin/
+bin/
 build/
 .gradle
 .gradletasknamecache
@@ -48,7 +48,7 @@ out/
 ## Eclipse
 ##############################
 .settings/
-../Trabajos Universidad/Inter ARSW/ARWS/ARSW-Lab2/bin/
+bin/
 tmp/
 .metadata
 .classpath
