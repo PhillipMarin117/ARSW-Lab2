@@ -5,36 +5,35 @@ package edu.escuelaing.arsw.app.linkedList;
  */
 public class Node {
 
-    Node next;
-    Node head;
-    double data;
+	Node next;
+	Node head;
+	double data;
+	public Node(double datos) {
+		this.data = datos;
+	}
 
-    public Node(double data) {
-        this.data = data;
-    }
+	/**
+	 * Agregue un nuevo nodo en el siguiente atributo
+	 * @param data
+	 */
+	public void append(int data) {
+		Node actual = this;
+		while (actual.next != null) {
+			actual = actual.next;
+		}
+		actual.next = new Node(data);
+	}
 
-    /**
-     * Add a new Node in the next attribute
-     * @param data
-     */
-    public void append(int data) {
-        Node current = this;
-        while (current.next != null) {
-            current = current.next;
-        }
-        current.next = new Node(data);
-    }
+	public Node getHead() {
+		return head;
+	}
 
-    public Node getHead() {
-        return head;
-    }
+	public double getData() {
+		return data;
+	}
 
-    public double getData() {
-        return data;
-    }
-
-    public Node getNext() {
-        return next;
-    }
+	public Node getNext() {
+		return next;
+	}
 
 }
