@@ -1,38 +1,95 @@
 package edu.escuelaing.arsw.app;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import static org.junit.Assert.*;
+import java.io.File;
+import org.junit.Test;
+import edu.escuelaing.arsw.app.calculator.Reader;
+import edu.escuelaing.arsw.app.calculator.Calculator;
+import  edu.escuelaing.arsw.app.linkedList.LinkedList;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
+public class AppTest {
+    @Test
+    public void deberiaCalcularLaMedia() throws Exception {
+        Calculator calculator = new Calculator();
+        LinkedList lista = new LinkedList();
+        lista.add(44.2);
+        lista.add(4.5);
+        lista.add(111.1);
+        Double value = calculator.CalMean(lista);
+        assertEquals(53.27, value, 0);
+
     }
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
+    @Test
+    public void deberiaCalcularLaDesviacionEstandar() throws Exception {
+        Calculator calculator = new Calculator();
+        LinkedList lista = new LinkedList();
+        lista.add(44.2);
+        lista.add(4.5);
+        lista.add(111.1);
+        Double value = calculator.CalDesviation(lista);
+        assertEquals(53.88, value, 0);
     }
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+    @Test
+    public void noDeberiaCalcularLaMedia() {
+        Calculator calculator = new Calculator();
+        LinkedList lista = new LinkedList();
+        lista.add(55.55);
+        lista.add(43.5);
+        lista.add(11.1);
+        lista.add(32);
+        Double value = calculator.CalMean(lista);
+        assertNotEquals(35.99, value, 0);
+    }
+
+    @Test
+    public void noDeberiaCalcularLaDesviacionEstandar() {
+        Calculator calculator = new Calculator();
+        LinkedList lista = new LinkedList();
+        lista.add(44.2);
+        lista.add(4.5);
+        lista.add(111.1);
+        Double value = calculator.CalDesviation(lista);
+        assertNotEquals(35.12, value, 0);
+    }
+
+    @Test
+    public void deberiaCalcularMediaYDesviacionDelArchivo() throws Exception {
+
+        Reader lector = new Reader();
+        String result = "Mean: "+550.6+" \nStandar deviation: "+572.03;
+        String rute = "test_file/1.txt";
+        String value = lector.leerArchivo(rute);
+        assertEquals(value,result);
+    }
+
+    @Test
+    public void noDeberiaCalcularMediaYDesviacionDelArchivo() throws Exception {
+        Reader lector = new Reader();
+        String result = "Mean: "+540.6+" \n Standar deviation: "+572.07;
+        String rute = "test_file/1.txt";
+        String value = lector.leerArchivo(rute);
+        assertNotEquals(value,result);
+    }
+
+    @Test
+    public void deberiaRemoverDeLaLista() {
+        LinkedList lista = new LinkedList();
+        lista.add(10);
+        lista.add(20);
+        lista.add(30);
+        lista.remove();
+        assertEquals(2,lista.size());
+    }
+
+    @Test
+    public void deberiaRemoverDeLaLista2() {
+        LinkedList lista = new LinkedList();
+        lista.add(10);
+        lista.add(20);
+        lista.add(30);
+        lista.remove();
+        assertNotEquals(3,lista.size());
     }
 }
