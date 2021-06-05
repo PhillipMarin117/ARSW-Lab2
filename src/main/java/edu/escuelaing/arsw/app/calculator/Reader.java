@@ -16,17 +16,19 @@ import edu.escuelaing.arsw.app.linkedList.LinkedList;
  * @author Felipe
  */
 public class Reader {
-    public Reader(){}
+
+    public Reader() {
+
+    }
 
     /**
-     * Lee el archivo linea por linea agregando cada numero a la linkedList
-     * Calcula la media y la desviacion estandar
+     * Reads the file line per line adding each line (number) to a linkedList for
+     * calcultes mean and standar deviation
+     *
      * @param ruta File's path.
      * @throws java.io.IOException If the file's path is not found.
      */
-
     public String leerArchivo(String ruta) throws IOException {
-        //algunas de las siguientes lineas las tome de guía de otros proyectos y trabajos
         Charset charset = Charset.forName("UTF-8");
         Path archivo = Paths.get(ruta);
         LinkedList lista = new LinkedList(); // Como solo tenemos una funcionalidad se crea el objeto
@@ -37,8 +39,8 @@ public class Reader {
                 lista.add(element);
             }
             Calculator calculator = new Calculator();
-            Double mean = calculator.CalMean(lista);
-            Double standarDeviation = calculator.CalDesviation(lista);
+            Double mean = calculator.calculateMean(lista);
+            Double standarDeviation = calculator.calculateStandarDeviation(lista);
             System.out.println("The number's mean is: " + mean);
             System.out.println("The number's standar deviation is: " + standarDeviation);
             String result = "Mean: " + mean + " \nStandar deviation: " + standarDeviation;
@@ -57,4 +59,5 @@ public class Reader {
             e.printStackTrace();
         }
     }
+
 }

@@ -7,43 +7,47 @@ import edu.escuelaing.arsw.app.linkedList.LinkedList;
  * @author Felipe Marín
  */
 public class Calculator {
+
     /**
-     * Este metodo permite calcular la media de una lista
+     * Calculates the list mean passed by parameter
      * @param lista
-     * @return double.
+     * @return mean.
      */
-    public Double CalMean (LinkedList lista){
+    public Double calculateMean(LinkedList lista) {
         int size = lista.size();
         if (size <= 0) {
             return 0.0;
         }
         double suma = 0;
         for (int i = 0; i < size; i++) {
-            suma += lista.get(i).getDatos();
+            suma += lista.get(i).getData();
         }
         return (double) Math.round((suma / size) * 100) / 100;
+
     }
 
     /**
-    * Este metodo permite calcular la Desviacion de una lista
-    * @param lista // este es de tipo LinkedList
-    * @return double desviacion estandar
-    */
-
-    public Double CalDesviation(LinkedList lista){
+     * Calculates the list standar deviation passed by parameter
+     * @param lista
+     * @return Double standar deviation.
+     */
+    public Double calculateStandarDeviation(LinkedList lista) {
         int size = lista.size();
         if (size < 2) {
             return 0.0;
-        }
-        else{
-            double valor = 0;
-            double media = CalMean(lista);
-            for (int i=0 ; i <size; i++){
-                valor = valor + Math.pow((lista.get(i).getDatos()-media), 2);
+        } else {
+            double value = 0.0;
+            double mean = calculateMean(lista);
+            for (int i = 0; i < size; i++) {
+                value = value + Math.pow((lista.get(i).getData() - mean), 2);
             }
-            double desvStandar = Math.sqrt(valor / (size-1));
-            return (double) Math.round(desvStandar * 100)/100;
-            }
+            double standarDeviation = Math.sqrt(value / (size - 1));
+            return (double) Math.round(standarDeviation * 100) / 100;
+
         }
+
+    }
+
+
 }
 
